@@ -40,11 +40,6 @@ server:
     # 单个连接拥有的最大缓存数
     maxOpenPreparedStatements: 20
 
-  ## json时间格式设置
-  jackson:
-    time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss
-
   ## thymeleaf模板设置，所有的页面都在service-systemd中
   thymeleaf:
     # 配置模板路径，默认是templates，可以不用配置
