@@ -1,95 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:include="template :: head(~{::title},~{::link},~{::style})">
-    <title>主页</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 
-<header class="layui-header main_header">
-
-    <!-- 标题logo -->
-    <div class="layui-nav main_headerBox main_left">
-        <a href="javascript:"><div class="layui-logo image_logo">logo</div></a>
-        <h3>路灯控制系统</h3>
-    </div>
-
-    <!-- 动态时间 -->
-    <div class="layui-nav main_headerBox main_left">
-        <nobr>
-            <span id="newTime"></span>
-        </nobr>
-    </div>
-
-    <!-- 个人信息 -->
-    <ul class="layui-nav main_headerBox main_right">
-
-    </ul>
-</header>
-
-<main class="main_content">
-    <aside class="layui-side layui-bg-black">
-        <div class="layui-side-scroll">
-            <ul class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed"><a href="javascript:" lay-id="main1" lay-url="main">首页</a></li>
-
-                <!--左侧菜单树-->
-                <!--/*@thymesVar id="menus" type="java.util.ArrayList"*/-->
-                <li class="layui-nav-item">
-                    <a th:case="0" href="javascript:void(0)">
-                        <!--<i th:class="${menu.icon}"></i>-->
-                        <span th:text="控制器管理">一级菜单</span>
-                    </a>
-
-
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a th:case="0" href="javascript:void(0)">
-                                &nbsp;&nbsp;&nbsp;
-                                <!--<i th:class="${cmenu.icon}"></i>-->
-                                <span th:text="单灯">二级菜单</span>
-                            </a>
-                            <a th:case="1" target="_blank">
-                                &nbsp;&nbsp;&nbsp;
-                                <!--<i th:class="${cmenu.icon}"></i>-->
-                                <span th:text="回路">二级菜单</span>
-                            </a>
-
-                        </dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-    </aside>
-    <article class="layui-body" >
-        <div class="index_main" style="width:99%">
-            <div class="layui-tab layui-tab-brief" lay-filter="test1" lay-allowClose="true" style="height: 100%">
-                <ul class="layui-tab-title">
-                    <li class="layui-this main-index" lay-id="main">首页</li>
-                </ul>
-                <div class="layui-tab-content" style="height: calc(100% - 20px);">
-                    <div class="layui-tab-item layui-show" style="height: 100%;">
-                        <div class="index_info_box">
-                            <div class="index_msg_box">
-                                <a href="javascript:">审批延期：<span>1</span></a>
-                                <a href="javascript:">审批回退：<span>1</span></a>
-                                <a href="javascript:">审批结案：<span>1</span></a>
-                            </div>
-                            <div class="index_btn_box">
-                                <a href="javascript:">表格模板</a>
-                                <a href="javascript:">用户手册</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </article>
-</main>
-
 </body>
-
-<!--<th:block th:include="template :: script"/>-->
-<!--<script th:src="@{js/common/web-socket.js}"></script>-->
-<!--<script th:src="@{/js/system/src/index.js}"></script>-->
-
 </html>
