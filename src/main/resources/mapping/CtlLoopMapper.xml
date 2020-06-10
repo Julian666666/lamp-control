@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingtu.lampcontrol.mapper.CtlLoopMapper" >
+  <resultMap id="BaseResultMap" type="com.lingtu.lampcontrol.pojo.CtlLoop" >
+    
+    <!-- 编号主键 -->
+    <id column="loop_id" property="loopId" jdbcType="BIGINT" />
+    
+    <!-- 控制器编号 -->
+    <result column="loop_code" property="loopCode" jdbcType="VARCHAR" />
+    
+    <!-- 控制器名称 -->
+    <result column="loop_name" property="loopName" jdbcType="VARCHAR" />
+    
+    <!-- 供应商名称 -->
+    <result column="suppliers" property="suppliers" jdbcType="VARCHAR" />
+    
+    <!-- 记录创建时间 -->
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    
+    <!-- 记录最后一次修改时间 -->
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    
+    <!-- 回收状态（0未回收  1已回收） -->
+    <result column="recycle" property="recycle" jdbcType="CHAR" />
+    
+    <!-- 此控制器是否被使用,1为弃用，0为使用  2为添加 -->
+    <result column="status" property="status" jdbcType="CHAR" />
+    
+    <!-- 备注 -->
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    loop_id, loop_code, loop_name, suppliers, create_time, update_time, recycle, `status`, 
+    remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lingtu.lampcontrol.pojo.CtlLoopExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ctl_loop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from ctl_loop
+    where loop_id = #{loopId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ctl_loop
+    where loop_id = #{loopId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lingtu.lampcontrol.pojo.CtlLoopExample" >
+    delete from ctl_loop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" >
+    insert into ctl_loop (loop_id, loop_code, loop_name, 
+      suppliers, create_time, update_time, 
+      recycle, `status`, remark)
+    values (#{loopId,jdbcType=BIGINT}, #{loopCode,jdbcType=VARCHAR}, #{loopName,jdbcType=VARCHAR}, 
+      #{suppliers,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{recycle,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" >
+    insert into ctl_loop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loopId != null" >
+        loop_id,
+      </if>
+      <if test="loopCode != null" >
+        loop_code,
+      </if>
+      <if test="loopName != null" >
+        loop_name,
+      </if>
+      <if test="suppliers != null" >
+        suppliers,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="recycle != null" >
+        recycle,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loopId != null" >
+        #{loopId,jdbcType=BIGINT},
+      </if>
+      <if test="loopCode != null" >
+        #{loopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loopName != null" >
+        #{loopName,jdbcType=VARCHAR},
+      </if>
+      <if test="suppliers != null" >
+        #{suppliers,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recycle != null" >
+        #{recycle,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lingtu.lampcontrol.pojo.CtlLoopExample" resultType="java.lang.Integer" >
+    select count(*) from ctl_loop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ctl_loop
+    <set >
+      <if test="record.loopId != null" >
+        loop_id = #{record.loopId,jdbcType=BIGINT},
+      </if>
+      <if test="record.loopCode != null" >
+        loop_code = #{record.loopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loopName != null" >
+        loop_name = #{record.loopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suppliers != null" >
+        suppliers = #{record.suppliers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.recycle != null" >
+        recycle = #{record.recycle,jdbcType=CHAR},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ctl_loop
+    set loop_id = #{record.loopId,jdbcType=BIGINT},
+      loop_code = #{record.loopCode,jdbcType=VARCHAR},
+      loop_name = #{record.loopName,jdbcType=VARCHAR},
+      suppliers = #{record.suppliers,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      recycle = #{record.recycle,jdbcType=CHAR},
+      `status` = #{record.status,jdbcType=CHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" >
+    update ctl_loop
+    <set >
+      <if test="loopCode != null" >
+        loop_code = #{loopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loopName != null" >
+        loop_name = #{loopName,jdbcType=VARCHAR},
+      </if>
+      <if test="suppliers != null" >
+        suppliers = #{suppliers,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recycle != null" >
+        recycle = #{recycle,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where loop_id = #{loopId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" >
+    update ctl_loop
+    set loop_code = #{loopCode,jdbcType=VARCHAR},
+      loop_name = #{loopName,jdbcType=VARCHAR},
+      suppliers = #{suppliers,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      recycle = #{recycle,jdbcType=CHAR},
+      `status` = #{status,jdbcType=CHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where loop_id = #{loopId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- ### 以上代码由MBG + CommentPlugin自动生成, 生成时间: 2020-06-10 11:23:12 ### -->
+
+
+
+  <!-- Your codes goes here!!! -->
+  
+  <select resultMap="BaseResultMap" parameterType="com.lingtu.lampcontrol.pojo.CtlLoopExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ctl_loop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

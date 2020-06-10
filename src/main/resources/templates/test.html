@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="window-target" content="_top"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8;"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
+    <title>任务下达</title>
+    <meta http-equiv="description" content="">
+    <meta name="keywords" content=""/>
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/layui-v2.5.6/layui/css/layui.css}"/>
+    <style>
+        .layui-laypage .layui-laypage-curr .layui-laypage-em {
+            background-color: #1F7BBC;
+        }
+
+        .layui-laypage a:hover {
+            color: #1F7BBC;
+        }
+
+        .layui-btn {
+            background-color: #1F7BBC;
+        }
+
+        .layui-btn-primary {
+            background-color: #fff;
+        }
+
+        .layui-form-label {
+            font-size: initial;
+            color: #666;
+        }
+
+        input {
+            font-size: initial;
+        }
+
+        .layui-table-view {
+            margin: 10px 10px;
+        }
+
+        .search-collapse, .select-table {
+            width: auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            background: #fff;
+            border-radius: 6px;
+            margin-top: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, .2);
+        }
+        .layui-form-mid {
+            display: inline-block !important;
+            line-height: 20px !important;
+            margin-right: 4px !important;
+        }
+        img {
+            width: 470px;
+            height: 280px;
+        }
+    </style>
+</head>
+<body class="">
+
+<div class="search-collapse">
+    <div class="layui-container">
+        <form class="layui-form" lay-filter="assign_search">
+            <div class="layui-row">
+                <div class="layui-col-md6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">故障位置</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="taskLoc" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">任务来源</label>
+                        <div class="layui-input-block">
+                            <select name="taskType">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">故障类型</label>
+                        <div class="layui-input-block">
+                            <select name="faultType">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">添加类型</label>
+                        <div class="layui-input-block">
+                            <select name="applyId">
+                                <option value="">请选择</option>
+                                <option value="-1">自动添加</option>
+                                <option value="0">手动添加</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md8">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">创建时间</label>
+                            <div class="layui-input-inline" style="width: 170px">
+                                <input type="text" name="createMinTime" class="layui-input" id="createMinTime" readonly="readonly">
+                            </div>
+                            <div class="layui-form-mid">-</div>
+                            <div class="layui-input-inline" style="width: 170px">
+                                <input type="text" name="createMaxTime" class="layui-input" id="createMaxTime" readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md4" style="text-align: right">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button type="button" class="layui-btn" lay-submit lay-filter="tasks_form_submit">搜索</button>
+                            <button type="reset" id="assign_reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<!--数据列表-->
+<!--<table id="task_assign_list" lay-filter="task_assign_list"></table>-->
+
+<!--<div th:replace="task/assign_task :: html"></div>-->
+
+<script th:src="@{/lib/layui-v2.5.6/layui/layui.js}" type="text/javascript" charset="utf-8"></script>
+
+</body>
+</html>

@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: 8090
 
 spring:
   ## 配置数据源：建立多个数据库连接并保存在数据库连接池中，当需要访问数据库时，
   ## 直接引用datasource获取数据库的连接对象即可，访问结束，又放回数据库连接池中
   datasource:
     #url: jdbc:mysql://localhost:3306/nanchang-lamp?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
-    url: jdbc:mysql://172.17.30.255:3306/nanchang-lamp?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://172.17.30.255:3306/mqtt?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8
     username: root
     password: 123456
     #password: root
